@@ -1,6 +1,12 @@
 # Env Values to Be Set
 
-You need to set the values in .env folder in order the app to perform as intended.
+You need create and set the values in .env file in order the app to perform as intended.
+
+## Values to be set:
+### ACCESS_TOKEN_SECRET=
+### REFRESH_TOKEN_SECRET=
+### PORT=
+### DB_URI=
 
 # Getting Started with Create React App
 
