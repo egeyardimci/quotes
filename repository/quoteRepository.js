@@ -10,7 +10,6 @@ const findNextQuote = async (quoteID) => {
     }
   };
   
-  
   const findNextQuoteWithAuthor = async (quoteID, author) => {
     try {
 
@@ -102,7 +101,7 @@ const findQuoteCountWithAuthor = async (author) => {
 
 const deleteQuote = async (quoteID,username) => {
   try {
-      const quote = await  Quote.findOne({_id:quoteID});
+      const quote = await Quote.findOne({_id:quoteID});
       if(quote.author === username){
         await Quote.remove({_id: quoteID});
         return true;
@@ -111,6 +110,98 @@ const deleteQuote = async (quoteID,username) => {
   } catch (error) {
       console.log(error);
       return false;
+  }
+}
+
+const findQuotesWithAuthorWithLimit = async (author,limit) => {
+  try {
+      const result = await Quote.find().where("author").equals(author).limit(limit);
+      return result || null;
+  } catch (error) {
+      console.log(error);
+      return null;
+  }
+}
+
+const findNextQuotesWithAuthorWithLimit = async (author,lastQuoteID,limit) => {
+  try {
+      const result = await Quote.find().where("_id").gt(lastQuoteID).where("author").equals(author).limit(limit);
+      return result || null;
+  } catch (error) {
+      console.log(error);
+      return null;
+  }
+}
+
+const findPreviousQuotesWithAuthorWithLimit = async (author,firstQuoteID,limit) => {
+  try {
+      const result = await Quote.find().where("_id").lt(firstQuoteID).where("author").equals(author).limit(limit);
+      return result || null;
+  } catch (error) {
+      console.log(error);
+      return null;
+  }
+}
+
+const findQuotesLikedByUserWithLimit = async (userID,limit) => {
+  try {
+      const result = await Quote.find({like: {"$in":[userID]}}).limit(limit);
+      return result || null;
+  } catch (error) {
+      console.log(error);
+      return null;
+  }
+}
+
+
+const findNextQuotesLikedByUserWithLimit = async (userID,lastQuoteID,limit) => {
+  try {
+      const result = await  Quote.find({like: {"$in":[userID]}}).where("_id").gt(lastQuoteID).limit(limit);
+      return result || null;
+  } catch (error) {
+      console.log(error);
+      return null;
+  }
+}
+
+const findPreviousQuotesLikedByUserWithLimit = async (userID,firstQuoteID,limit) => {
+  try {
+      const result = await  Quote.find({like: {"$in":[userID]}}).where("_id").lt(firstQuoteID).limit(limit);
+      return result || null;
+  } catch (error) {
+      console.log(error);
+      return null;
+  }
+}
+
+
+const findQuotesDislikedByUserWithLimit = async (userID,limit) => {
+  try {
+      const result = await Quote.find({dislike: {"$in":[userID]}}).limit(limit);
+      return result || null;
+  } catch (error) {
+      console.log(error);
+      return null;
+  }
+}
+
+const findNextQuotesDislikedByUserWithLimit = async (userID,lastQuoteID,limit) => {
+  try {
+      const result = await  Quote.find({dislike: {"$in":[userID]}}).where("_id").gt(lastQuoteID).limit(limit);
+      return result || null;
+  } catch (error) {
+      console.log(error);
+      return null;
+  }
+}
+
+const findPreviousQuotesDislikedByUserWithLimit = async (userID,firstQuoteID,limit) => {
+  try {
+      const result = await  Quote.find({dislike: {"$in":[userID]}}).where("_id").lt(firstQuoteID).limit(limit);
+      return result || null;
+  } catch (error) {
+      console.log(error);
+      return null;
   }
 }
 
@@ -124,5 +215,14 @@ module.exports = {
     findQuoteWithID,
     findQuoteWithAuthor,
     findQuoteCountWithAuthor,
-    deleteQuote
+    deleteQuote,
+    findNextQuotesWithAuthorWithLimit,
+    findPreviousQuotesWithAuthorWithLimit,
+    findQuotesWithAuthorWithLimit,
+    findQuotesLikedByUserWithLimit,
+    findPreviousQuotesDislikedByUserWithLimit,
+    findNextQuotesDislikedByUserWithLimit,
+    findQuotesDislikedByUserWithLimit,
+    findPreviousQuotesLikedByUserWithLimit,
+    findNextQuotesLikedByUserWithLimit
 }

@@ -27,7 +27,6 @@ const loginUser = async (username,password) => {
                 return accessToken
             }
             else{
-                console.log("NOT AUTH");
                 return null;
             }
 

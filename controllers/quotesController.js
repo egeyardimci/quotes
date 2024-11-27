@@ -11,7 +11,6 @@ const getPreviousQuote = async (req,res) => {
 }
 
 const createQuote = async (req,res) => {
-    console.log(req.user.username)
     const result = await quoteService.createQuote(req.body.content,req.user.username);
     result != null ? res.json(result._id) : res.status(310).send();
 };
@@ -35,7 +34,6 @@ const searchQuote = async (req,res) =>{
     const result = await quoteService.searchQuote(req.body.type,req.body.data);
     result != null ? res.json(result) : res.status(400).send();
 };
-
 
 module.exports = {
     getNextQuoute,
