@@ -29,7 +29,6 @@ const loginUser = async (username,password) => {
             else{
                 return null;
             }
-
         }
         catch (error) {
             console.log(error)
