@@ -15,7 +15,13 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.1",
+    "nodeapp": "file:",
     "nodemon": "^2.0.20",
     "react-router-dom": "^6.8.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0"
   }
 }
