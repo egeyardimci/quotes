@@ -14,7 +14,8 @@ You need create and set the values in .env file in order the app to perform as i
 
 # Starting the app
 
-Run this command:
+Run this commands:
+`npm install`
 `node app.js`
 
 # Coming soon

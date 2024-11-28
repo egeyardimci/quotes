@@ -11,8 +11,13 @@ const saveUser = async (user) => {
 }
 
 const getUser = async (username) =>{
-    const user = await User.findOne({username: username});
-    return user || null;
+    try {
+        const user = await User.findOne({username: username});
+        return user;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
 }
 
 module.exports = {

@@ -12,7 +12,6 @@ const findNextQuote = async (quoteID) => {
   
   const findNextQuoteWithAuthor = async (quoteID, author) => {
     try {
-
       const quote = await Quote.findOne()
         .where("_id").gt(quoteID)
         .where("author").equals(author);

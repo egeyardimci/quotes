@@ -12,7 +12,6 @@ const deleteQuote = async (quoteID, username) => {
 
 const listQuotes = async (username,userID, type, action = null, lastQuoteID = null, firstQuoteID = null, limit = 2) => {
     let result = null;
-
     switch(type) {
         case "my":
             if (lastQuoteID === null) {
@@ -44,7 +43,6 @@ const listQuotes = async (username,userID, type, action = null, lastQuoteID = nu
             }
             break;
     }
-
     return result;
 };
 

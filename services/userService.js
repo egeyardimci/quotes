@@ -41,11 +41,11 @@ const loginUser = async (username,password) => {
     }
 }
 
+//Returns user details to the client
 const authUser = (token) => {
     if(token != null){
         return jwt.verify(token,process.env.ACCESS_TOKEN_SECRET);
     }
-
 }
 
 module.exports = {

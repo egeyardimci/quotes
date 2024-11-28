@@ -24,7 +24,7 @@ const getPreviousQuoute = async (type,quoteID,author) =>{
     if(type === "authorSearch"){
         result = await quoteRepository.findPreviousQuoteWithAuthor(quoteID,author);
     }
-    
+
     return result;
 }
 

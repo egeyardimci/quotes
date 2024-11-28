@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const { getNextQuoute, getPreviousQuote, createQuote, getRandomQuote, searchQuote, likeQuote, dislikeQuote } = require("../controllers/quotesController");
-const { authUser } = require("../services/authService");
+const quotesController = require("../controllers/quotesController");
+const authService = require("../services/authService");
 
-router.post("/get-next-quote", getNextQuoute)
-router.post("/get-previous-quote", getPreviousQuote)
-router.get("/random-quote", getRandomQuote)
-router.post("/search-quote",searchQuote)
+router.post("/next", quotesController.getNextQuoute)
+router.post("/previous", quotesController.getPreviousQuote)
+router.get("/random", quotesController.getRandomQuote)
+router.post("/search", quotesController.searchQuote)
 
-router.post("/create-quote", authUser, createQuote)
-router.post("/dislike-quote", authUser,dislikeQuote)
-router.post("/like-quote", authUser, likeQuote)
+router.post("/create", authService.authUser, quotesController.createQuote)
+router.post("/dislike", authService.authUser, quotesController.dislikeQuote)
+router.post("/like", authService.authUser, quotesController.likeQuote)
 
 
 module.exports = router;
